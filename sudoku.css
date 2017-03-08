@@ -1,0 +1,100 @@
+		ul,li{
+			list-style: none;	
+			margin: 0;
+			padding: 0;		
+		}
+		.sd{
+			width: 500px;
+			margin: 50px auto 0;
+		}
+		.sdspan{
+			float: left;
+			display: inline-block;
+			margin: 0;
+			border: 1px dotted blue;
+			height: 50px;
+			width: 50px;
+			line-height: 50px;
+			text-align: center;
+		}
+		.sdli{
+			width: 100%;
+			height: 50px;
+			float: left;
+		}
+
+		.bl{
+			border-left-color: blue;
+			border-left-style: solid;
+		}
+		.bt{
+			border-top-color: blue;
+			border-top-style: solid;
+		}
+		.br{
+			border-right-color: blue;
+			border-right-width: 2px;
+			border-right-style: solid;
+		}
+		.bb{
+			border-bottom-color: blue;
+			border-bottom-width: 2px;
+			border-bottom-style: solid;
+		}
+		.blankCell{
+			color:blue;
+			font-weight: 600;
+		}
+		.bg_red {
+			background: red;
+		}
+		.clearfix:after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		.btn-group {
+			text-align: center;
+			margin-top: 20px;
+		}
+
+		.button {
+			background-color: white;
+			border-radius: 50%;
+			color: black;
+			padding: 15px 32px;
+			text-decoraton: none;
+			display: inline-block;
+			font-size: 20px;
+			margin: 4px 2px;
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+			cursor: pointer;	
+		}
+
+		.button1 {
+			border: 2px solid green;
+		}
+
+		.button1:hover {
+			background-color: green;
+			color: white;
+		}
+
+		.button2 {
+			border: 2px solid blue;
+		}
+
+		.button2:hover {
+			background-color: blue;
+			color: white;
+		}
+
+		.button3 {
+			border: 2px solid red;
+		}
+
+		.button3:hover {
+			background-color: red;
+			color: white;
+		}
