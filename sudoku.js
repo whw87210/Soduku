@@ -1,7 +1,7 @@
 function SD(){
 	this.sdArr = [];//generate sudoku array	
 	this.errorArr = [];//error blocks
-	this.blankNum = 30;//empty blocks
+	this.blankNum = 9;//empty blocks
 	this.backupSdArr = [];//backup
 }
 
@@ -44,17 +44,17 @@ SD.prototype={
 		var level = prompt("Please input difficulty level: Easy(E), Medium(M), Hard(H)"); 
 		if(level){
 			if (level == "Easy" || level == "E" || level == "e") {
-				alert("You have selected EASY level, good luck!");
+				confirm("You have selected EASY level, good luck!");
 				num = 35;
 			} else if (level == "Medium" || level == "M" || level == "m") {
-				alert("You have selected MEDIUM level, good luck!");
+				confirm("You have selected MEDIUM level, good luck!");
 				num = 45;
 			} else if (level == "Hard" || level == "H" || level == "h") {
-				alert("You have selected HRAD level, good luck!");
+				confirm("You have selected HRAD level, good luck!");
 				num = 55;
-			}
+			} 
 		}else{
-			num = false;
+			num = this.blankNum;
 		}
 		return num;
 	},
@@ -207,7 +207,10 @@ SD.prototype={
 		}
 		done = this.isAllInputed();
 		if(this.errorArr.length == 0 && done ){
+			var success = 0; //should retrieve from database
 			alert('you win!');
+			success++;
+			console.log(success);
 			$(".bg_red").removeClass('bg_red');
 		}else{
 			if(!done){
@@ -300,7 +303,7 @@ function getConnect(arr1,arr2){
 }
 
 //Difference two sets
-function　arrMinus(arr1,arr2){
+function arrMinus(arr1,arr2){
 	var resArr = [],len = arr1.length;
 	for(var i=0;i<len;i++){
 		if($.inArray(arr1[i], arr2)<0){
