@@ -207,7 +207,7 @@ SD.prototype={
 		}
 		done = this.isAllInputed();
 		if(this.errorArr.length == 0 && done ){
-			var success = 0; //should retrieve from database
+			//should retrieve from database
 			alert('you win!');
 			success++;
 			console.log(success);
