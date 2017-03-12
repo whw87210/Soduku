@@ -1,7 +1,7 @@
 function SD(){
 	this.sdArr = [];//generate sudoku array	
 	this.errorArr = [];//error blocks
-	this.blankNum = 9;//empty blocks
+	this.blankNum = 1;//empty blocks
 	this.backupSdArr = [];//backup
 }
 
@@ -134,7 +134,7 @@ SD.prototype={
 		return arr;
 	},
 	getTh:function(i,j){
-		//äget the coordinate of middle block in 3 blocks
+		//ï¿½get the coordinate of middle block in 3 blocks
 		var cenArr = [22,52,82,25,55,85,28,58,88];
 		var index = (Math.ceil(j/3)-1) * 3 +Math.ceil(i/3) -1;
 		var cenNum = cenArr[index];
@@ -191,7 +191,7 @@ SD.prototype={
 			};
 		});
 	},
-	checkRes:function(){
+	checkRes:function(username, success){
 		//Detects user input results. Add the input to the array before testing. When check single input, cache this value to stack and delete from the array, afterward re-assign the value back to array.
 		var blankArr = this.blankArr,len = this.blankArr.length,x,y,dom,done,temp;
 		this.getInputVals();
@@ -206,12 +206,35 @@ SD.prototype={
 
 		}
 		done = this.isAllInputed();
-		if(this.errorArr.length == 0 && done ){
-			//should retrieve from database
+		if(this.errorArr.length == 0 && done ){ 
 			alert('you win!');
 			success++;
 			console.log(success);
+			var html = success;
 			$(".bg_red").removeClass('bg_red');
+			$("#succeed").empty().append(html);
+
+			//ppfz:
+			 var xmlHttp;
+            if (window.XMLHttpRequest){
+              xmlHttp=new XMLHttpRequest(); 
+            }else {
+              xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");  // code for IE6, IE5
+            }
+
+            xmlHttp.onreadystatechange=function(){
+            if (xmlHttp.status==200 && xmlHttp.readyState==4){
+                  var result= xmlHttp.responseText;
+                  if (result=='false'){
+                  }
+                  }
+            }
+   
+           // call updateSucceed.php
+            xmlHttp.open("GET","updateSucceed.php?username="+username+"&succeed="+success,true);  // call updateSucceed.php to update database
+            xmlHttp.send();
+          
+
 		}else{
 			if(!done){
 				alert("You did not finish the game");
@@ -312,5 +335,6 @@ function arrMinus(arr1,arr2){
 	}
 	return resArr;
 }
+
 
 

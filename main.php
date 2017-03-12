@@ -14,7 +14,7 @@
 	"db2304998",
 	"3306");
     
-    $sql="SELECT * FROM reg WHERE username='$username' AND password='$password' AND succeed='$succeed'";
+    $sql="SELECT * FROM reg WHERE username='$username' AND password='$password'";
     //print $sql;
     $result=mysqli_query($con,$sql);
     //print mysqli_num_rows($result);

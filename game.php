@@ -1,3 +1,23 @@
+<?php
+  session_start();
+  $username = $_SESSION["username"];
+
+  $con = mysqli_connect(
+        "webprogramming.cmmcedthfueh.us-west-2.rds.amazonaws.com",
+        "user",
+        "password",
+        "db2304998",
+        "3306"
+     ) or die("Could not connect:" . mysql_error());
+
+  $result= mysqli_query ($con, "SELECT * from reg WHERE username='".$username."'");   
+  while( $row= mysqli_fetch_array($result, MYSQLI_ASSOC)){
+    $succeed=$row['succeed'];
+	$_SESSION['succeed']=$succeed;
+  };
+
+?>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,16 +28,22 @@
 </head>
 
 <body style="background-color: yellow; ">
-	<h1>Welcome to Sudoku, Enjoy the Game!</h1>
-	<p>Player: <?php session_start(); echo $_SESSION['username']; ?></p> 
-    <p>Number of Succeed:  </p>
-	<p id="p3"></p>
+
+<?php 
+    $username=$_SESSION["username"];
+    $succeed=$_SESSION['succeed'];
+	print "<h1> Welcome to Sudoku, enjoy the Game! </h1>";
+	print "<p>Player: $username </p>";
+    print "<p> Number of Succeed: <span id=\"succeed\">$succeed</span></p>";
+    print "<p id=\"p3\"></p>";
 	
-  <div class = "btn-group">
-		<button class="button button1" onclick = "sd.checkRes();">Finish</button>
-		<button class="button button2" onclick = "sd.reset();">Reset</button>
-		<button class="button button3" onclick = "sd.again();">Restart</button>
-	</div>
+    print "<div class = \"btn-group\">";
+	print "<button class=\"button button1\" onclick = \"sd.checkRes('" .$username. "', $succeed);\"> Finish </button>";
+	print "<button class=\"button button2\" onclick = \"sd.reset();\"> Reset </button>";
+	print	"<button class=\"button button3\" onclick = \"sd.again();\"> Restart </button>";
+	print "</div>";
+
+?>
 
 	<script
   src="http://code.jquery.com/jquery-3.1.1.slim.min.js"
@@ -29,38 +55,6 @@
 		sd.init(30);
 	</script>
 
-
-
-	 <script>   
-   // ppfz MAR-10 代码：
-        function getSucceed(){  //应该按 button1 的时候执行吧
-            var xmlHttp;
-
-            if (window.XMLHttpRequest){
-              xmlHttp=new XMLHttpRequest(); //for most of the browsers
-            }else {
-              xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");  // code for IE6, IE5
-            }
-
-            xmlHttp.onreadystatechange=function(){
-              if (xmlHttp.status==200 && xmlHttp.readyState==4){
-                  var result= xmlHttp.responseText;
-                  if (result=='false'){
-                  }
-                  }
-            };
-   
-           // 重点是这句： 调用 getSucceed.php
-            xmlHttp.open("GET","getSucceed.php?username=test&succeed=55",true);  //这里实际上应该用变量, 我这里就试验性
-            xmlHttp.send();
-          
-    }
-//测试执行下：
-        setInterval("getSucceed()",1000);
-   
-  </script>
-		
-<a href="logout.php">Log Out</a>
 
 </body>
 </html>
