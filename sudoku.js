@@ -207,7 +207,7 @@ SD.prototype={
 		}
 		done = this.isAllInputed();
 		if(this.errorArr.length == 0 && done ){ 
-			alert('you win!');
+			alert('Congratulation! you win!');
 			success++;
 			console.log(success);
 			var html = success;
